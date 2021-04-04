@@ -23,9 +23,8 @@ fetch('https://api.sampleapis.com/cartoons/cartoons2D')
   .then(value => { return value.json() })
   .then(value => value.map(cartoon => Cartoons.push(cartoon)))
 const RenderImage=(props)=>{
-
   return(
-    <img src={props.image} alt='no image' />
+    <img id={props.id} src={props.image} alt='no image' />
   )
 }
 function App() {
@@ -40,16 +39,14 @@ function App() {
     return (
       props.elem.map(elem => (
         <div className='Card' key={elem.id}><h2>{elem.title}</h2>
-          {<RenderImage image={elem.image}/>}
+          {<RenderImage image={elem.image} id={elem.id}/>}
           <button onClick={() => deleteCard(elem.id)}>Delete</button> 
-          <span >
-          <Toogle />
-          </span>
+          <Toogle id={elem.id}/>
         </div>))
     )
     
   }
-
+ 
   const DeleteLastElement = () => {
     const newData = [...data]
     newData.pop()
